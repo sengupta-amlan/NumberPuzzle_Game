@@ -37,7 +37,8 @@ class CustomNumberPuzzleControl extends NumberPuzzleControl {
 		Button[] buttons = game.getButtons();
 		
 		//Your logic here		
-		
+		swapButton(buttons[emptyCellId],buttonClicked);
+		emptyCellId=game.getEmptyCellId();
 		return emptyCellId;
 
 	}
@@ -45,8 +46,11 @@ class CustomNumberPuzzleControl extends NumberPuzzleControl {
 		int arr[] = new int[15];
 		
 		//Your logic here
+		for(int i=0;i<15;i++) {
+			arr[i]=i+1;
+		}
+		Collections.shuffle(arr);
 		int a = getRandomNumber();
-		
 		
 		return arr;
 	}
@@ -55,8 +59,16 @@ class CustomNumberPuzzleControl extends NumberPuzzleControl {
 		boolean winner = true;
 		
 		// Your Logic here
-		getIntegerArrayOfButtonIds(buttons);
-
+		int[] arr=getIntegerArrayOfButtonIds(buttons);
+		for(int i=0;i<15;i++) {
+			if(arr[i]==(i+1)) {
+				winner=true;
+			}
+			else {
+				winner=false;
+				break;
+			}
+		}
 		return winner;
 	}
 }
